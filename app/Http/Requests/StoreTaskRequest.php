@@ -26,10 +26,10 @@ class StoreTaskRequest extends FormRequest
             'title' => ['required'],
             'slug' => ['required', Rule::unique('tasks')->ignore($this->task)],
             'description' => ['required'],
-            'project_id' => ['required'],
-            'priority',
-            'status',
-            'deadline',
+            'project_id' => ['required', 'integer'],
+            'priority' => ['integer'],
+            'status' => ['integer'],
+            'deadline' => ['date'],
         ];
     }
 }

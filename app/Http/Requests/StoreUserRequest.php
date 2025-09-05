@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreProjectRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,9 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required'],
-            'slug' => ['required', Rule::unique('projects')->ignore($this->project)],
-            'description' => ['required'],
-            'priority' => ['integer'],
-            'status' => ['integer'],
-            'deadline' => ['date'],
-//            'user_id',
+            'name' => ['required'],
+            'email' => ['required', Rule::unique('users')->ignore($this->user)],
+            'password' => ['required']
         ];
     }
 }

@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->integer('priority')->nullable();
-            $table->boolean('status')->default(false);
-//            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
-            $table->integer('user_id')->default(1);//TODO Modifica mai pe urma
+            $table->integer('priority');
+            $table->integer('status')->default(false);
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
+//            $table->integer('user_id')->default(1);//TODO Modifica mai pe urma
 
-            $table->date('deadline')->nullable();
+            $table->date('deadline');
             $table->timestamps();
         });
     }
