@@ -21,8 +21,13 @@ class UserController extends Controller
     }
     public function store(StoreUserRequest $request)
     {
-        User::create($request->validated());
-        return response()->json("User Created!");
+        $user = User::create($request->validated());
+
+        return response()->json([
+            "message" => "User Created!",
+            "user" => $user,
+            "token" => $user->createToken('auth_token')->plainTextToken
+        ]);
     }
     public function update(StoreUserRequest $request, User $user)
     {
