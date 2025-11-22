@@ -29,7 +29,8 @@ class StoreProjectRequest extends FormRequest
             'priority' => ['integer'],
             'status' => ['integer'],
             'deadline' => ['date'],
-//            'user_id',
+            'user_id' => ['integer']
+            
         ];
     }
 }

@@ -23,19 +23,33 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
-        Project::create($request->validated());
+        $validated = $request->validated();
+        Project::create([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'slug' => $validated['slug'],
+            'deadline' => $validated['deadline'],
+            'priority' => $validated['priority'],
+            'user_id' => auth()->id()
+        ]);
         return response()->json('Project created!');
     }
 
     public function update(StoreProjectRequest $request, Project $project)
     {
+        $this->authorize('update', $project);
+
         $project->update($request->validated());
+
         return response()->json('Project updated!');
     }
 
     public function destroy(Project $project)
     {
+        $this->authorize('delete', $project);
+
         $project->delete();
-        return response()->json('Project deleted successfully!');
+
+        return response()->json('Project deleted!');
     }
 }
